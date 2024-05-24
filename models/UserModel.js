@@ -1,10 +1,11 @@
 class User {
     constructor(id, username, password, email, desc){
-        this.id = "";
+        this.id = Math.random();
         this.username = "";
+        this.email = "";
         this.password = "";
         this.desc = "";
     }
 }
 
-module.exports = User;
+export default User;
