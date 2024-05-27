@@ -8,5 +8,11 @@
     "test": "",
     "postinstall": "npx husky init",
     "prepare": "husky"
-  }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "npx --no-install commitlint --edit $1",
+      "post-merge": "npx husky install"
+    }
+  } 
 }

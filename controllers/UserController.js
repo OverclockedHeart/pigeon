@@ -12,6 +12,7 @@ class UsersList {
         else this.username = username;
         user.password = hashSync(password, 7);
         user.email = email;
+        
         this.#users.push(user);
     }
 
