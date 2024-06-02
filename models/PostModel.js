@@ -3,6 +3,7 @@ class Post {
     this.id = Math.random();
     this.titolo = titolo;
     this.descrizione = descrizione;
+    this.author = null;
   }
 }
 

@@ -26,6 +26,10 @@ class UsersList {
         }
     }
 
+    returnLoggedUserID(){
+        return this.#userLogged.id;
+    }
+
     logout(){
         this.#userLogged = null;
         console.log("Logout succcessful.");
