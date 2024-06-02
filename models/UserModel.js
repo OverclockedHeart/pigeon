@@ -1,6 +1,8 @@
+import { generateID } from "../utils/id_gen.js";
+
 class User {
-    constructor(id, username, password, email, desc){
-        this.id = Math.random(); //needs to change w/something better
+    constructor(username, password, email, desc){
+        this.id = "U_" + generateID();
         this.username = "";
         this.email = "";
         this.password = "";

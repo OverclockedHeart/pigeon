@@ -1,6 +1,8 @@
+import { generateID } from "../utils/id_gen.js";
+
 class Post {
   constructor(titolo, descrizione) {
-    this.id = Math.random(); //needs to change w/something better
+    this.id = "P_" + generateID();
     this.titolo = titolo;
     this.descrizione = descrizione;
     this.author = null;

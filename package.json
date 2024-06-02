@@ -14,5 +14,6 @@
       "commit-msg": "npx --no-install commitlint --edit $1",
       "post-merge": "npx husky install"
     }
-  } 
+  },
+  "type":"module"
 }
