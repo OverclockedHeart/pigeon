@@ -2,7 +2,8 @@
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
-    "husky": "^9.0.11"
+    "husky": "^9.0.11",
+    "bcrypt": "^5.1.1"
   },
   "scripts": {
     "test": "",
@@ -14,6 +15,5 @@
       "commit-msg": "npx --no-install commitlint --edit $1",
       "post-merge": "npx husky install"
     }
-  },
-  "type":"module"
+  }
 }

@@ -1,25 +1,33 @@
 import User from "../models/UserModel.js";
-import { hashSync, compareSync } from 'bcrypt';
+import { hashSync, genSaltSync, compareSync } from 'bcrypt';
 
 class UsersList {
     #users = [];
-    #userLogged = null;
+    #userLogged;
 
-    signup(username, password, email){
+    signup(username, password, email, desc){
         const user = new User();
         
-        if (this.#users.find((u) => u === username) !== undefined) console.error("Error: user already exists, please choose a different username.");
-        else this.username = username;
-        user.password = hashSync(password, 7);
-        user.email = email;
+        if (this.#users.find((u) => u.username === username) !== undefined) 
+            console.error("Error: user already exists, please choose a different username.");
         
-        this.#users.push(user);
+        else {
+            user.username = username;
+            
+            const salt = genSaltSync(5);
+            user.password = hashSync(password, salt);
+
+            user.email = email;
+            user.desc = desc;
+            this.#users.push(user);
+        }
     }
 
     login(username, password) {
-        const user = this.#users.find((user) => username === user.username && compareSync(password, user.password)); 
+        const user = this.#users.find((u) => u.username === username);
         
-        if (user === undefined) console.error("Error: wrong credentials.");
+        if (user === undefined) console.error("Error: wrong credentials."); //non trova username
+        else if (compareSync(password, user.password) === false) console.error("Error: wrong password."); //la password e l'hash non combaciano
         else {
             this.#userLogged = user;
             console.log("Login successful!");
@@ -27,7 +35,8 @@ class UsersList {
     }
 
     returnLoggedUserID(){
-        return this.#userLogged.id;
+        if (this.#userLogged === null) console.error("Error: no user logged in yet.");
+        else return this.#userLogged.id;
     }
 
     logout(){
