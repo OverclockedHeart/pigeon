@@ -7,21 +7,22 @@
     <title> Pigeon Jobs - Login </title>
 
     <link href="pigeon_page.css" type="stylesheet" />
-    <script src="../src/login.js"></script>
 </head>
 
 <body>
     <div>
         <form id="loginForm" action="">
             <label>Username:</label>
-            <input id="usernameInput" type="text" />
+            <input id="usernameInput" type="text" minlength="5" maxlength="20" />
             <br><br>
             <label>Password:</label>
-            <input id="passwordInput" type="password" />
+            <input id="passwordInput" type="password" minlength="8" maxlength="40" />
             <br><br>
             <input type="submit" value="Login" />
         </form>
     </div>
+
+    <script src="../src/login.js"></script>
 </body>
 
 </html>

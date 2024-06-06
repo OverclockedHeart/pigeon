@@ -5,15 +5,17 @@ function saveStateToStorage(app){ //accepts a PigeonApp object
     const password = document.getElementById("password").value;
     
     app.login(username, password);
-    const stringified_app = JSON.stringify(app);
+    const app_string = JSON.stringify(app);
     
-    localStorage.setItem("app", stringified_app);
+    localStorage.setItem("app", app_string);
 }
 
-const stringified_app = localStorage.getItem("app");
-const parsed_app = JSON.parse(stringified_app);
-
-document.getElementById(loginForm).addEventListener("submit", function(event){
-    event.preventDefault();
-    saveStateToStorage(parsed_app);
+document.addEventListener("DOMContentLoaded", function(){
+    let app = localStorage.getItem("app");
+    let parsed_app = Object.assign(new PigeonApp(), JSON.parse(app));
+    
+    document.getElementById("loginForm").addEventListener("submit", function(event){
+        saveStateToStorage(parsed_app);
+        event.preventDefault();
+    })
 });

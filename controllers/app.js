@@ -1,5 +1,5 @@
-import { PostList } from ("../controllers/PostController.js");
-import { UserList } from ("../controllers/UserController.js");
+import PostList from "../controllers/PostController.js";
+import UserList from "../controllers/UserController.js";
 
 export default class PigeonApp {
     posts = new PostList;

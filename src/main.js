@@ -1,11 +1,15 @@
-import PigeonApp from "../controllers/app";
+import PigeonApp from "../controllers/app.js";
 
-if (localStorage.getItem("app") === undefined) {
-    const app = new PigeonApp;
-    const stringified_app = JSON.stringify(app);
+const imported_app = localStorage.getItem("app");
+window.alert("test 1 main");
 
-    localStorage.setItem("app", stringified_app);
+if (imported_app) {
+    let app = Object.assign(new PigeonApp(), JSON.parse(imported_app));
+    window.alert(app);
 } else {
-    const stringified_app = localStorage.getItem("app");
-    const app = JSON.parse(stringified_app);
+    let app = new PigeonApp();
+    app = JSON.stringify(app);
+    window.alert("test 2.1 main");
+
+    localStorage.setItem("app", app);
 }
