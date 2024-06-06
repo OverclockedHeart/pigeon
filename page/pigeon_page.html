@@ -7,15 +7,22 @@
     <title> Pigeon Jobs </title>
 
     <link href="./css/pigeon_page.css" type="stylesheet" />
-    <script src="../utils/misc.js"></script>
-    <script src="../app.js"></script>
+    <script src="../src/main.js"></script>
+
+    <script>
+        function switchToLogin() {
+            window.location.href = "./login.html";
+        }
+    </script>
 </head>
 
 <body>
     <div class="feed"></div>
 
     <div class="profile_bar">
-        <button onclick="LoginRedirect()">Login</button>
+        <button onclick="switchToLogin()">
+            Login
+        </button>
     </div>
 </body>
 
