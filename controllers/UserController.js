@@ -1,5 +1,4 @@
 import User from "../models/UserModel.js";
-import { hashSync, genSaltSync, compareSync } from 'bcrypt';
 
 class UsersList {
     #users = [];
@@ -9,13 +8,13 @@ class UsersList {
         const user = new User();
         
         if (this.#users.find((u) => u.username === username) !== undefined) 
-            console.error("Error: user already exists, please choose a different username.");
+            window.alert("Error: user already exists, please choose a different username.");
         
         else {
             user.username = username;
             
-            const salt = genSaltSync(5);
-            user.password = hashSync(password, salt);
+            const salt = dcodeIO.bcrypt.genSaltSync(5);
+            user.password = dcodeIO.bcrypt.hashSync(password, salt);
 
             user.email = email;
             user.desc = desc;
@@ -26,8 +25,8 @@ class UsersList {
     login(username, password) {
         const user = this.#users.find((u) => u.username === username);
         
-        if (user === undefined) console.error("Error: wrong credentials."); //non trova username
-        else if (compareSync(password, user.password) === false) console.error("Error: wrong password."); //la password e l'hash non combaciano
+        if (user === undefined) window.alert("Error: wrong credentials."); //non trova username
+        else if (dcodeIO.bcrypt.compareSync(password, user.password) === false) console.error("Error: wrong password."); //la password e l'hash non combaciano
         else {
             this.#userLogged = user;
             console.log("Login successful!");

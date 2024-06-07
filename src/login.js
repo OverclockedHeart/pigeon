@@ -1,21 +1,22 @@
 import PigeonApp from "../controllers/app.js";
+import UsersList from "../controllers/UserController.js";
 
-function saveStateToStorage(app){ //accepts a PigeonApp object
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+function saveLoginToStorage(){
+    const username = document.getElementById("usernameInput").value;
+    const password = document.getElementById("passwordInput").value;
     
-    app.login(username, password);
+    let app = new PigeonApp();
+    app = Object.assign(app, JSON.parse(window.localStorage.getItem("app")));
+    app.current_users.login(username, password);
+    
     const app_string = JSON.stringify(app);
-    
-    localStorage.setItem("app", app_string);
-}
+    window.localStorage.setItem("app", app_string);
+};
 
 document.addEventListener("DOMContentLoaded", function(){
-    let app = localStorage.getItem("app");
-    let parsed_app = Object.assign(new PigeonApp(), JSON.parse(app));
-    
     document.getElementById("loginForm").addEventListener("submit", function(event){
-        saveStateToStorage(parsed_app);
+        saveLoginToStorage();
         event.preventDefault();
+        window.location.href.replace("./page/pigeon_page.html");
     })
 });

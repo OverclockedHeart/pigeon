@@ -1,14 +1,13 @@
 import Post from "../models/PostModel.js";
-import UsersList from "./UserController.js";
 
 class PostList {
   #posts = [];
 
-  addPost(titolo, descrizione, user){
+  addPost(titolo, descrizione, userID){
     const new_post = new Post();
     new_post.titolo = titolo;
     new_post.descrizione = descrizione;
-    new_post.author = user; //id autore del post
+    new_post.author = userID; //id autore del post
 
     this.#posts.push(new_post);
   }
@@ -21,15 +20,5 @@ class PostList {
     return this.#posts;
   }
 }
-
-/*
-let userlist = new UsersList;
-let postlist = new PostList;
-
-userlist.signup("hi", "cuck", "hello@hi.com");
-userlist.login("hi", "cuck");
-postlist.addPost("first post", "description", userlist.returnLoggedUserID());
-console.log(postlist.getPosts());
-*/
 
 export default PostList;
