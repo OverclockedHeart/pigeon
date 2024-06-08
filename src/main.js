@@ -1,12 +1,13 @@
 import PigeonApp from "../controllers/app.js";
 
-const imported_app = window.localStorage.getItem("app");
+const app_string = window.localStorage.getItem("app");
 
-if (imported_app) {
-    const app = Object.assign(new PigeonApp(), JSON.parse(imported_app));
-    console.log(app);
+if (app_string) {
+    const app = Object.setPrototypeOf(JSON.parse(imported_app), PigeonApp.prototype);
 } else {
-    const app = JSON.stringify(new PigeonApp());
-    window.localStorage.setItem("app", app);
+    app = JSON.stringify(new PigeonApp());
     console.log("App missing. Creating new instance.");
+    window.localStorage.setItem("app", app);
 };
+
+window.localStorage.setItem("app", app);

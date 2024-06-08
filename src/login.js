@@ -5,18 +5,32 @@ function saveLoginToStorage(){
     const username = document.getElementById("usernameInput").value;
     const password = document.getElementById("passwordInput").value;
     
-    let app = new PigeonApp();
-    app = Object.assign(app, JSON.parse(window.localStorage.getItem("app")));
-    app.current_users.login(username, password);
+    let app_string = window.localStorage.getItem("app");
+    let app;
+
+    if (app_string == undefined || app_string == null) {
+        app = new PigeonApp();
+    } else {
+        app = JSON.parse(app_string);
+        Object.setPrototypeOf(app, PigeonApp.prototype);
+        
+        if (app.current_users){
+            Object.setPrototypeOf(app.current_users, UsersList.prototype);
+        } else {
+            app.current_users = new UsersList();
+        }
+    }
+
+    //a quanto pare, Object.setPrototypeOf e Object.assign non assegnano in automatico le classi importate
+
+    app.login(username, password);
     
-    const app_string = JSON.stringify(app);
+    app_string = JSON.stringify(app);
     window.localStorage.setItem("app", app_string);
 };
 
-document.addEventListener("DOMContentLoaded", function(){
-    document.getElementById("loginForm").addEventListener("submit", function(event){
-        saveLoginToStorage();
-        event.preventDefault();
-        window.location.href.replace("./page/pigeon_page.html");
-    })
+document.getElementById("loginForm").addEventListener("submit", function(event){
+    saveLoginToStorage();
+    event.preventDefault();
+    window.location.href = "./page/pigeon_page.html";
 });

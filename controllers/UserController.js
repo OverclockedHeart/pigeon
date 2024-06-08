@@ -1,13 +1,13 @@
 import User from "../models/UserModel.js";
 
 class UsersList {
-    #users = [];
-    #userLogged;
+    users = [];
+    userLogged = undefined;
 
     signup(username, password, email, desc){
-        const user = new User();
+        let user = new User();
         
-        if (this.#users.find((u) => u.username === username) !== undefined) 
+        if (this.users.find((u) => u.username === username) != undefined) 
             window.alert("Error: user already exists, please choose a different username.");
         
         else {
@@ -18,28 +18,28 @@ class UsersList {
 
             user.email = email;
             user.desc = desc;
-            this.#users.push(user);
+            this.users.push(user);
         }
     }
 
     login(username, password) {
-        const user = this.#users.find((u) => u.username === username);
+        let user = this.users.find((u) => u.username === username);
         
         if (user === undefined) window.alert("Error: wrong credentials."); //non trova username
         else if (dcodeIO.bcrypt.compareSync(password, user.password) === false) console.error("Error: wrong password."); //la password e l'hash non combaciano
         else {
-            this.#userLogged = user;
+            this.userLogged = user;
             console.log("Login successful!");
         }
     }
 
     returnLoggedUserID(){
-        if (this.#userLogged === null) console.error("Error: no user logged in yet.");
-        else return this.#userLogged.id;
+        if (this.userLogged === null) console.error("Error: no user logged in yet.");
+        else return this.userLogged.id;
     }
 
     logout(){
-        this.#userLogged = null;
+        this.userLogged = null;
         console.log("Logout succcessful.");
     }
 }

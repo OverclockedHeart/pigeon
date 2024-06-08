@@ -6,4 +6,8 @@ export default class PigeonApp {
         this.current_users = new UsersList();
         this.posts = new PostList();
     }
+
+    login(username, password){
+        this.current_users.login(username, password);
+    }
 }
