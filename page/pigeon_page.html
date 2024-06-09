@@ -8,21 +8,20 @@
 
     <link href="./css/pigeon_page.css" type="stylesheet" />
 
+    <script src="../controllers/app.js"></script>
+    <script src="../src/main.js"></script>
     <script>
-        function switchToLogin() {
-            window.location.href = "./login.html";
+        function switchPage() {
+            window.location.href = "../page/login.html";
         }
     </script>
-    <script type="module" src="../src/main.js"></script>
 </head>
 
 <body>
     <div class="feed"></div>
 
     <div class="profile_bar">
-        <button onclick="switchToLogin()">
-            Login
-        </button>
+        <button onclick="switchPage()">Login</button>
     </div>
 </body>
 
