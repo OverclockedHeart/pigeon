@@ -52,7 +52,7 @@ export default class PigeonApp {
             app_users: this.#app_users.toPlainObject(),
             app_posts: this.#app_posts.toPlainObject(),
             __class__: 'PigeonApp'
-        };
+        }
     }
 
     static fromPlainObject(obj) {

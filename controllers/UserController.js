@@ -47,6 +47,8 @@ class UsersList {
         else return this.userLogged.id;
     }
 
+    //----------------------------------
+
     toPlainObject() {
         return {
             users: this.#users.map(user => user.toPlainObject()),

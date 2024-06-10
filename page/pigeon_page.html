@@ -7,12 +7,13 @@
     <title> Pigeon Jobs </title>
 
     <link href="./css/pigeon_page.css" type="stylesheet" />
+    <link rel="icon" href="../favicon.ico" type="image/ico" />
 
     <script src="../controllers/app.js"></script>
     <script src="../src/main.js"></script>
     <script>
-        function switchPage() {
-            window.location.href = "../page/login.html";
+        function switchPage(dest) {
+            window.location.href = "../page/" + dest + ".html/";
         }
     </script>
 </head>
@@ -21,7 +22,8 @@
     <div class="feed"></div>
 
     <div class="profile_bar">
-        <button onclick="switchPage()">Login</button>
+        <button onclick="switchPage('login')">Login</button>
+        <button onclick="switchPage('signup')">Signup</button>
     </div>
 </body>
 

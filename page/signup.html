@@ -4,27 +4,30 @@
 
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
-    <title> Pigeon Jobs - Login </title>
+    <title> Pigeon Jobs - Signup </title>
 
     <link href="pigeon_page.css" type="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/ico" />
 
     <script type="module" src="../controllers/app.js"></script>
     <script type="module" src="../src/main.js"></script>
-    <script type="module" src="../src/login.js"></script>
+    <script type="module" src="../src/signup.js"></script>
     <script src="../node_modules/bcryptjs/dist/bcrypt.min.js"></script>
 </head>
 
 <body>
     <div>
-        <form id="loginForm">
+        <form id="signupForm">
             <label>Username:</label>
             <input id="usernameInput" type="text" minlength="5" maxlength="20" />
+            <br><br>
+            <label>Email:</label>
+            <input id="emailInput" type="text" />
             <br><br>
             <label>Password:</label>
             <input id="passwordInput" type="password" minlength="8" maxlength="40" />
             <br><br>
-            <input type="submit" value="Login" />
+            <input type="submit" value="Sign Up" />
         </form>
     </div>
 </body>

@@ -39,6 +39,8 @@ class PostList {
     return this.#posts;
   }
 
+  //----------------------------------------
+
   toPlainObject() {
     return {
         posts: this.#posts.map(post => post.toPlainObject()),

@@ -8,6 +8,8 @@ class Post {
     this.author = null;
   }
   
+  //--------------------------------
+
   toPlainObject() {
     return {
         id: this.id,

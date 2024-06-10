@@ -9,6 +9,8 @@ class User {
         this.desc = desc;
     }
 
+    //----------------------------------
+
     toPlainObject() {
         return {
             id: this.id,
