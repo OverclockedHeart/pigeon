@@ -19,6 +19,10 @@ export default class PigeonApp {
         this.#app_users.signup(username, password, email, desc);
     }
     
+    editDesc(newDesc){
+        this.#app_users.editDesc(newDesc);
+    }
+
     logout(){
         this.#app_users.logout()   
     }

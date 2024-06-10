@@ -37,24 +37,32 @@ class UsersList {
         }
     }
 
+    editDesc(newDesc){
+        let userToEdit = this.#users.find((user) => user === this.#userLogged);
+        let index = this.#users.indexOf(userToEdit);
+        
+        userToEdit.desc = newDesc;
+        this.#users[index] = userToEdit;
+    }
+
     logout(){
-        this.userLogged = null;
+        this.#userLogged = null;
         console.log("Logout succcessful.");
     }
 
     returnLoggedUserID(){
-        if (this.userLogged == null || this.userLogged == undefined) console.error("Error: no user logged in yet.");
+        if (this.#userLogged == null || this.#userLogged == undefined) console.error("Error: no user logged in yet.");
         else return this.userLogged.id;
     }
 
     //----------------------------------
 
-    toPlainObject() {
+    toPlainObject(){
         return {
             users: this.#users.map(user => user.toPlainObject()),
             userLogged: this.#userLogged ? this.#userLogged.toPlainObject() : null,
             __class__: 'UsersList'
-        };
+        }
     }
 
     static fromPlainObject(obj) {
