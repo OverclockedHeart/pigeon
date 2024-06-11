@@ -21,12 +21,14 @@ export function serializeClassInstance(instance) {
 
 export function deserializeClassInstance(json) {
     const plainObject = JSON.parse(json);
-    const ClassConstructor = classesRegistry[plainObject.__class__];
+    const classConstructor = classesRegistry[plainObject.__class__];
     
-    if (ClassConstructor) {
-        return ClassConstructor.fromPlainObject(plainObject);
+    if (classConstructor) {
+        return classConstructor.fromPlainObject(plainObject);
     } else return plainObject;
 }
+
+//--------------------------------------
 
 export function savePigeonAppToLocalStorage(pigeonApp) {
     const serializedApp = serializeClassInstance(pigeonApp);
@@ -35,6 +37,7 @@ export function savePigeonAppToLocalStorage(pigeonApp) {
 
 export function loadPigeonAppFromLocalStorage() {
     const serializedApp = localStorage.getItem('pigeonApp');
+    
     if (serializedApp) {
         return deserializeClassInstance(serializedApp);
     } else return new PigeonApp();
