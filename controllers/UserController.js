@@ -12,11 +12,18 @@ class UsersList {
     login(username, password) {
         let user = this.#users.find((u) => u.username === username);
         
-        if (user == undefined || user == null) window.alert("Error: wrong credentials."); //non trova username
-        else if (dcodeIO.bcrypt.compareSync(password, user.password) === false) console.error("Error: wrong password."); //la password e l'hash non combaciano
+        if (user == undefined || user == null) {
+            window.alert("Error: wrong credentials.");
+            return false;
+        } //non trova username
+        else if (!dcodeIO.bcrypt.compareSync(password, user.password)) {
+            window.alert("Error: wrong password.");
+            return false;
+        } //la password e l'hash non combaciano
         else {
             this.#userLogged = user;
-            console.log("Login successful!");
+            window.alert("Login successful!");
+            return true;
         }
     }
 

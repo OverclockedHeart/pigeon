@@ -5,5 +5,11 @@ document.addEventListener("submit", function(){
     let password = document.getElementById("passwordInput").value;
     let app = loadPigeonAppFromLocalStorage();
 
-    window.location.href = "../page/pigeon_page.html";
+    {
+        let loginResult = app.login(username, password);
+        if (loginResult){
+            savePigeonAppToLocalStorage(app);
+            window.location.href = "../page/index.html";
+        }
+    }
 });

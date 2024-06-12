@@ -1,0 +1,93 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  width: 100%;
+  background: #333;
+  color: white;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0 20px;
+}
+
+nav {
+  margin: 0 20px;
+}
+
+nav button {
+  margin-left: 10px;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+main {
+  max-width: 800px;
+  width: 100%;
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.hidden {
+  display: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin: 5px 0;
+}
+
+form input,
+form button {
+  margin: 5px 0;
+  padding: 10px;
+}
+
+form button {
+  cursor: pointer;
+}
+
+#annunci,
+#userAnnunci {
+  text-align: center;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.annuncio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+}
+
+.annuncio:last-child {
+  border-bottom: none;
+}
+
+.deleteBtn {
+  cursor: pointer;
+  color: red;
+}

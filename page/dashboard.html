@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Dashboard</title>
+  <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+  <h1>Benvenuto nella tua Dashboard!</h1>
+
+  <div id="post-form">
+    <h2>Crea un nuovo annuncio</h2>
+    <form id="newPostForm">
+      <label for="postTitle">Titolo:</label>
+      <input type="text" id="postTitle" name="postTitle" required />
+
+      <label for="postContent">Contenuto:</label>
+      <textarea id="postContent" name="postContent" required></textarea>
+
+      <button type="submit">Pubblica</button>
+    </form>
+  </div>
+
+  <div id="postList">
+    <h2>I tuoi annunci</h2>
+    <ul id="posts">
+
+    </ul>
+
+  </div>
+
+  <script src="../src/dashboard.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Annunci di Lavoro</title>
+
+  <link href="css/style.css" rel="stylesheet" />
+  <link rel="icon" href="favicon.ico" type="image/ico" />
+
+  <script type="module" src="../controllers/app.js"></script>
+  <script type="module" src="../src/main.js"></script>
+  <script>
+    function switchPage(dest) {
+      window.location.href = "../page/" + dest + ".html";
+    }
+  </script>
+</head>
+
+<body>
+
+  <header>
+    <h1>Pigeon v1.0 beta</h1>
+    <nav>
+      <button onclick="switchPage('dashboard')" id="dashboardBtn">Dashboard</button>
+      <button onclick="switchPage('login')" id="loginBtn">Login</button>
+      <button onclick="switchPage('signup')" id="signupBtn">Signup</button>
+    </nav>
+  </header>
+
+  <main id="home">
+    <h2>Annunci</h2>
+    <div id="annunci">
+      <h6>Nessun annuncio al momento</h6>
+    </div>
+  </main>
+
+</body>
+
+</html>
