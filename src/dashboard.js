@@ -1,21 +1,20 @@
 import { loadPigeonAppFromLocalStorage, savePigeonAppToLocalStorage } from "../utils/serialize.js";
 
 const app = loadPigeonAppFromLocalStorage();
-let userID = app.getLoggedUser().id;
+const user = app.getLoggedUser();
   
-if (!userID) {
+if (!user) {
   window.alert("Error: no user logged in. Redirecting to login...");
   window.location.href = "../page/login.html";
 }
 
-const postList = document.getElementById("posts");
+const postList = document.getElementById("annunci");
 
-function renderPosts(app, postList) {
+function renderPosts() {
   postList.innerHTML = "";
-    
-  let userPosts = app.getPosts();
 
-  userPosts.forEach((post) => {
+  let posts = app.getPosts();
+  posts.forEach((post) => {
     let div = document.createElement("div");
     let title = document.createElement("h3");
     let body = document.createElement("p");
@@ -31,21 +30,19 @@ function renderPosts(app, postList) {
 
 //---------------------------------
 
-const newPostForm = document.getElementById("newPostForm");
+const postForm = document.getElementById("postForm");
 
-newPostForm.addEventListener("submit", function(event){
+postForm.addEventListener("submit", function(event){
   event.preventDefault();
 
   let postTitle = document.getElementById("postTitle").value;
   let postContent = document.getElementById("postContent").value;
-  let userID = app.getLoggedUser().id;
+  let userID = user.id;
 
   app.addPost(postTitle, postContent, userID);
   savePigeonAppToLocalStorage(app);
     
   renderPosts(app, postList);
-
-  newPostForm.reset();
 });
 
 renderPosts(app, postList);

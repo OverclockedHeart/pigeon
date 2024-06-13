@@ -1,7 +1,11 @@
 import Post from "../models/PostModel.js";
 
 class PostList {
-  #posts = [];
+  #posts;
+
+  constructor(){
+    this.#posts = [];
+  }
 
   addPost(title, desc, userID){
     const new_post = new Post();
@@ -36,7 +40,8 @@ class PostList {
   }
 
   getPosts() {
-    return this.#posts;
+    let posts = this.#posts;
+    return posts;
   }
 
   //----------------------------------------

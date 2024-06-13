@@ -26,14 +26,8 @@ export default class PigeonApp {
     logout(){
         this.#app_users.logout()   
     }
-    
-    returnLoggedUserID(){
-        this.#app_users.returnLoggedUserID();
-    }
 
-    setLoggedUser(user){
-        this.#app_users.userLogged = user;
-    }
+    //----------------------------
 
     getLoggedUser(){
         return this.#app_users.userLogged;
@@ -54,7 +48,7 @@ export default class PigeonApp {
     }
 
     getPosts(){
-        this.#app_posts.getPosts();
+        return this.#app_posts.getPosts();
     }
     
     //-----------------------------
