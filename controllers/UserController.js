@@ -6,7 +6,7 @@ class UsersList {
 
     constructor(){
         this.#users = [];
-        this.userLogged = new User();
+        this.userLogged = null;
     }
 
     //-----------------------------
