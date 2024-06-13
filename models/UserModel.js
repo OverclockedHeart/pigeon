@@ -1,7 +1,7 @@
 import { generateID } from "../utils/id_gen.js";
 
 class User {
-    constructor(username = "", password = "", email = "", desc = ""){
+    constructor(username, password, email = "", desc = ""){
         this.id = "U_" + generateID();
         this.username = username;
         this.email = email;

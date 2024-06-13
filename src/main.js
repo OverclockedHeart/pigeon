@@ -1,3 +1,3 @@
-import * as serialize from "../utils/serialize.js";
+import { loadPigeonAppFromLocalStorage } from "../utils/serialize.js";
 
-const app = serialize.loadPigeonAppFromLocalStorage();
+const app = loadPigeonAppFromLocalStorage();

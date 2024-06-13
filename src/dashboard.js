@@ -1,40 +1,51 @@
-import { loadPigeonAppFromLocalStorage, savePigeonAppToLocalStorage } from "../utils/serialize";
+import { loadPigeonAppFromLocalStorage, savePigeonAppToLocalStorage } from "../utils/serialize.js";
 
-document.addEventListener("DOMContentLoaded", function () {
-  let app = loadPigeonAppFromLocalStorage();
-  let userID = app.returnLoggedUserID();
+const app = loadPigeonAppFromLocalStorage();
+let userID = app.getLoggedUser().id;
   
-  if (!userID) {
-    window.location.href = "../page/login.html";
-  }
+if (!userID) {
+  window.alert("Error: no user logged in. Redirecting to login...");
+  window.location.href = "../page/login.html";
+}
 
-  const newPostForm = document.getElementById("newPostForm");
-  const postList = document.getElementById("posts");
+const postList = document.getElementById("posts");
 
-  function renderPosts(app) {
-    postList.innerHTML = "";
+function renderPosts(app, postList) {
+  postList.innerHTML = "";
     
-    let userPosts = app.getPosts();
+  let userPosts = app.getPosts();
 
-    userPosts.forEach((post) => {
-      let li = document.createElement("li");
-      li.textContent = `Titolo: ${post.title}, Contenuto: ${post.content}`;
-      postList.appendChild(li);
-    });
-  }
+  userPosts.forEach((post) => {
+    let div = document.createElement("div");
+    let title = document.createElement("h3");
+    let body = document.createElement("p");
 
-  newPostForm.addEventListener("submit", function(event){
-    event.preventDefault();
-
-    let postTitle = document.getElementById("postTitle").value;
-    let postContent = document.getElementById("postContent").value;
-
-    app.addPost(postTitle, postContent, userID);
-    savePigeonAppToLocalStorage(app);
+    title.innerText = post.title;
+    body.innerText = post.desc;
     
-    renderPosts();
-    newPostForm.reset();
+    div.appendChild(title);
+    div.appendChild(body);
+    postList.appendChild(div);
   });
+}
 
-  renderPosts();
+//---------------------------------
+
+const newPostForm = document.getElementById("newPostForm");
+
+newPostForm.addEventListener("submit", function(event){
+  event.preventDefault();
+
+  let postTitle = document.getElementById("postTitle").value;
+  let postContent = document.getElementById("postContent").value;
+  let userID = app.getLoggedUser().id;
+
+  app.addPost(postTitle, postContent, userID);
+  savePigeonAppToLocalStorage(app);
+    
+  renderPosts(app, postList);
+
+  newPostForm.reset();
 });
+
+renderPosts(app, postList);

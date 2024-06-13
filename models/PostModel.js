@@ -5,7 +5,7 @@ class Post {
     this.id = "P_" + generateID();
     this.title = title;
     this.desc = desc;
-    this.author = null;
+    this.author = author;
   }
   
   //--------------------------------

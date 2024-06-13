@@ -2,28 +2,29 @@ import User from "../models/UserModel.js";
 
 class UsersList {
     #users;
-    #userLogged;
+    userLogged;
 
     constructor(){
         this.#users = [];
-        this.#userLogged = null;
+        this.userLogged = new User();
     }
 
-    login(username, password) {
+    //-----------------------------
+
+    login(username, password){
         let user = this.#users.find((u) => u.username === username);
         
-        if (user == undefined || user == null) {
+        if (user == undefined || user == null) { //non trova username
             window.alert("Error: wrong credentials.");
             return false;
-        } //non trova username
-        else if (!dcodeIO.bcrypt.compareSync(password, user.password)) {
+        } 
+        else if (!dcodeIO.bcrypt.compareSync(password, user.password)) { //la password e l'hash non combaciano
             window.alert("Error: wrong password.");
             return false;
-        } //la password e l'hash non combaciano
+        } 
         else {
-            this.#userLogged = user;
-            window.alert("Login successful!");
-            return true;
+            this.userLogged = user;
+            return user;
         }
     }
 
@@ -45,7 +46,7 @@ class UsersList {
     }
 
     editDesc(newDesc){
-        let userToEdit = this.#users.find((user) => user === this.#userLogged);
+        let userToEdit = this.#users.find((user) => user === this.userLogged);
         let index = this.#users.indexOf(userToEdit);
         
         userToEdit.desc = newDesc;
@@ -53,29 +54,38 @@ class UsersList {
     }
 
     logout(){
-        this.#userLogged = null;
+        this.userLogged = null;
         console.log("Logout succcessful.");
     }
 
-    returnLoggedUserID(){
-        if (this.#userLogged == null || this.#userLogged == undefined) console.error("Error: no user logged in yet.");
-        else return this.#userLogged.id;
+    //----------------------------------
+
+    setLoggedUser(user){
+        this.userLogged = user;
     }
 
+    getLoggedUser(){
+        return this.userLogged;
+    }
+    
     //----------------------------------
 
     toPlainObject(){
         return {
             users: this.#users.map(user => user.toPlainObject()),
-            userLogged: this.#userLogged ? this.#userLogged.toPlainObject() : null,
+            userLogged: this.userLogged.toPlainObject(),
             __class__: 'UsersList'
         }
     }
 
-    static fromPlainObject(obj) {
+    static fromPlainObject(obj){
         let list = new UsersList();
+
+        let userLogged = User.fromPlainObject(obj.userLogged);
+
         list.#users = obj.users.map((userObj) => User.fromPlainObject(userObj));
-        list.#userLogged = obj.userLogged ? User.fromPlainObject(obj.userLogged) : null;
+        list.userLogged = userLogged;
+        
         return list;
     }
 }

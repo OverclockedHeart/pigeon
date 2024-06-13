@@ -5,35 +5,42 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Dashboard</title>
-  <link href="css/style.css" rel="stylesheet" />
+  <title>Pigeon - Dashboard</title>
+
+  <link href="../page/css/style.css" rel="stylesheet" />
+  <link rel="icon" href="./favicon.ico" type="image/ico" />
+
+  <script type="module" src="../controllers/app.js"></script>
+  <script type="module" src="../src/dashboard.js"></script>
 </head>
 
 <body>
-  <h1>Benvenuto nella tua Dashboard!</h1>
+  <header>
+    <h1>Pigeon - Dashboard Personale</h1>
+  </header>
 
-  <div id="post-form">
+  <div id="postForm">
     <h2>Crea un nuovo annuncio</h2>
+
     <form id="newPostForm">
       <label for="postTitle">Titolo:</label>
-      <input type="text" id="postTitle" name="postTitle" required />
+      <input type="text" id="postTitle" required />
 
       <label for="postContent">Contenuto:</label>
-      <textarea id="postContent" name="postContent" required></textarea>
+      <textarea id="postContent" required></textarea>
 
       <button type="submit">Pubblica</button>
     </form>
   </div>
+
+  <hr>
 
   <div id="postList">
     <h2>I tuoi annunci</h2>
     <ul id="posts">
 
     </ul>
-
   </div>
-
-  <script src="../src/dashboard.js"></script>
 </body>
 
 </html>
