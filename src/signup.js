@@ -8,6 +8,4 @@ document.addEventListener("submit", function(){
     
     app.signup(username, password, email, "");
     savePigeonAppToLocalStorage(app);
-    
-    window.location.href = "../page/pigeon_page.html";
 });

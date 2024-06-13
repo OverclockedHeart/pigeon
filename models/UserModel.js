@@ -1,7 +1,7 @@
 import { generateID } from "../utils/id_gen.js";
 
 class User {
-    constructor(username, password, email = "", desc = ""){
+    constructor(username = "", password = "", email = "", desc = ""){
         this.id = "U_" + generateID();
         this.username = username;
         this.email = email;
@@ -25,6 +25,7 @@ class User {
     static fromPlainObject(obj){
         let user = new User(obj.username, obj.password, obj.email, obj.desc);
         user.id = obj.id;
+
         return user;
     }
 }

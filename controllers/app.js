@@ -30,17 +30,15 @@ export default class PigeonApp {
     returnLoggedUserID(){
         this.#app_users.returnLoggedUserID();
     }
-    //--------
 
     setLoggedUser(user){
-        this.#app_users.setLoggedUser(user);
+        this.#app_users.userLogged = user;
     }
 
     getLoggedUser(){
-        this.#app_users.getLoggedUser();
+        return this.#app_users.userLogged;
     }
 
-    //--------
     //----------------------------
 
     addPost(titolo, desc, userID){

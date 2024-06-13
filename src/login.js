@@ -1,4 +1,4 @@
-import User from "../models/UserModel.js";
+import PigeonApp from "../controllers/app.js";
 import { loadPigeonAppFromLocalStorage, savePigeonAppToLocalStorage } from "../utils/serialize.js";
 
 document.addEventListener("submit", function(){
@@ -7,11 +7,8 @@ document.addEventListener("submit", function(){
     let app = loadPigeonAppFromLocalStorage();
 
     {
-        let loginResult = app.login(username, password);
-        if (loginResult != null){
-            window.alert("Login successful!");
-            app.setLoggedUser(loginResult);
-            savePigeonAppToLocalStorage(app);
-        }
-    }
+        app.login(username, password);
+        savePigeonAppToLocalStorage(app);
+        window.location.assign("../page/index.html");
+}
 });
