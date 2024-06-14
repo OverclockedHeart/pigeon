@@ -61,20 +61,24 @@ class UsersList {
     //----------------------------------
 
     toPlainObject(){
+        let checkedUser = this.userLogged;
+        if (checkedUser !== null) checkedUser = this.userLogged.toPlainObject();
+        
         return {
             users: this.#users.map(user => user.toPlainObject()),
-            userLogged: this.userLogged.toPlainObject(),
+            userLogged: checkedUser,
             __class__: 'UsersList'
         }
     }
 
     static fromPlainObject(obj){
         let list = new UsersList();
-        let userLogged = User.fromPlainObject(obj.userLogged);
+        let checkedUser = obj.userLogged;
         
+        if (checkedUser !== null) checkedUser = User.fromPlainObject(checkedUser);
+        list.userLogged = checkedUser;
+
         list.#users = obj.users.map((userObj) => User.fromPlainObject(userObj));
-        list.userLogged = userLogged;
-        
         return list;
     }
 }
