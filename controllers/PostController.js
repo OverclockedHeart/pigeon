@@ -50,7 +50,7 @@ class PostList {
     return {
         posts: this.#posts.map(post => post.toPlainObject()),
         __class__: 'PostList'
-    };
+    }
   }
 
   static fromPlainObject(obj) {

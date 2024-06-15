@@ -19,7 +19,7 @@ class User {
             email: this.email,
             desc: this.desc,
             __class__: 'User'
-        };
+        }
     }
 
     static fromPlainObject(obj){

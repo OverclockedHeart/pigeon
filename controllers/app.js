@@ -33,6 +33,10 @@ export default class PigeonApp {
         return this.#app_users.userLogged;
     }
 
+    getUserByID(id){
+        return this.#app_users.getUserByID(id);
+    }
+
     //----------------------------
 
     addPost(titolo, desc, userID){

@@ -7,4 +7,4 @@ document.addEventListener("submit", function(){
 
     app.login(username, password);
     savePigeonAppToLocalStorage(app);
-});
+})

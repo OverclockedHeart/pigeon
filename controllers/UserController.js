@@ -60,6 +60,13 @@ class UsersList {
 
     //----------------------------------
 
+    getUserByID(id){
+        let userbyID = this.#users.find((user) => {id === user.id});
+        return userbyID;
+    }
+
+    //----------------------------------
+
     toPlainObject(){
         let checkedUser = this.userLogged;
         if (checkedUser !== null) checkedUser = this.userLogged.toPlainObject();
