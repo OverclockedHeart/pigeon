@@ -1,4 +1,3 @@
-import getUserByID from "../controllers/app.js";
 import { loadPigeonAppFromLocalStorage, savePigeonAppToLocalStorage } from "../utils/serialize.js";
 
 document.addEventListener("DOMContentLoaded", function(event){
@@ -15,16 +14,19 @@ document.addEventListener("DOMContentLoaded", function(event){
 
     app.addPost(postTitle, postContent, userID);
     savePigeonAppToLocalStorage(app);
-    
     renderPosts(app);
   })
 
+  savePigeonAppToLocalStorage(app);
   renderPosts(app);
 })
 
 
 export function renderPosts(app){
   let postList = document.getElementById("postList");
+
+  if (!postList) console.log("No postlist found.");
+
   postList.innerHTML = "";
   
   let posts = app.getPosts();
@@ -38,16 +40,31 @@ export function renderPosts(app){
     
     let author = document.createElement("p");
     author.innerText = post.author;
+    author.className = "user_id";
     author.hidden = true;
 
     let id = document.createElement("p");
     id.innerText = post.id;
+    id.className = "post_id";
     id.hidden = true;
-    
+
     div.appendChild(title);
     div.appendChild(body);
-    div.appendChild(id);
     div.appendChild(author);
+    div.appendChild(id);
+
+    let deleteButton = document.createElement("button");
+    deleteButton.innerText = "Elimina";
+    deleteButton.onclick = function(event){
+      let post_id = event.currentTarget.parentNode.childNodes;
+      post_id = post_id[3].innerText;
+      app.removePost(post_id);
+      
+      savePigeonAppToLocalStorage(app);
+      renderPosts(app);
+    };
+    div.appendChild(deleteButton);
+
     div.className = "post";
     postList.appendChild(div);
   })
