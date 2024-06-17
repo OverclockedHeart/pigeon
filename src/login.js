@@ -7,4 +7,5 @@ document.addEventListener("submit", function(){
 
     app.login(username, password);
     savePigeonAppToLocalStorage(app);
+    window.location.href = "../page/dashboard.html";
 })
