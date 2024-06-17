@@ -1,3 +1,5 @@
+page/index.html
+
 DESCRIZIONE:
 
 L'app permette agli utenti di cercare gli annunci di lavoro inseriti dalle aziende e di mandare il CV
