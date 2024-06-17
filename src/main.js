@@ -9,7 +9,6 @@ renderPosts(app, postList);
 if (app.getLoggedUser()){
     document.getElementById("loginButton").remove();
     document.getElementById("signupButton").remove();
-    document.getElementById("signupButton").remove();
 
     let newelement = document.createElement("button");
     newelement.innerText = "Logout";
