@@ -53,17 +53,20 @@ export function renderPosts(app){
     div.appendChild(author);
     div.appendChild(id);
 
-    let deleteButton = document.createElement("button");
-    deleteButton.innerText = "Elimina";
-    deleteButton.onclick = function(event){
-      let post_id = event.currentTarget.parentNode.childNodes;
-      post_id = post_id[3].innerText;
-      app.removePost(post_id);
-      
-      savePigeonAppToLocalStorage(app);
-      renderPosts(app);
-    };
-    div.appendChild(deleteButton);
+    if (post.author === app.getLoggedUser().id){
+      let deleteButton = document.createElement("button");
+      deleteButton.innerText = "Elimina";
+      deleteButton.onclick = function(event){
+        let post_id = event.currentTarget.parentNode.childNodes;
+        post_id = post_id[3].innerText; //post_id[3] = <p id=post_id> post_id </p>
+        app.removePost(post_id);
+        
+        savePigeonAppToLocalStorage(app);
+        renderPosts(app);
+      }
+
+      div.appendChild(deleteButton);
+    }
 
     div.className = "post";
     postList.appendChild(div);
