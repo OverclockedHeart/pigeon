@@ -1,21 +1,23 @@
 import { loadPigeonAppFromLocalStorage, savePigeonAppToLocalStorage } from "../utils/serialize.js";
 
-document.addEventListener("DOMContentLoaded", function(event){
+document.addEventListener("DOMContentLoaded", function(){
   const app = loadPigeonAppFromLocalStorage();
   const user = app.getLoggedUser();
   const postForm = document.getElementById("postForm");
-  
-  postForm.addEventListener("submit", function(event){
-    event.preventDefault();
 
-    let postTitle = document.getElementById("postTitle").value;
-    let postContent = document.getElementById("postContent").value;
-    let userID = user.id;
+  try {
+    postForm.addEventListener("submit", function(event){
+      event.preventDefault();
 
-    app.addPost(postTitle, postContent, userID);
-    savePigeonAppToLocalStorage(app);
-    renderPosts(app);
-  })
+      let postTitle = document.getElementById("postTitle").value;
+      let postContent = document.getElementById("postContent").value;
+      let userID = user.id;
+
+      app.addPost(postTitle, postContent, userID);
+      savePigeonAppToLocalStorage(app);
+      renderPosts(app);
+    })
+  } catch (error){console.log("Error: postForm not found.")};
 
   savePigeonAppToLocalStorage(app);
   renderPosts(app);
@@ -25,9 +27,11 @@ document.addEventListener("DOMContentLoaded", function(event){
 export function renderPosts(app){
   let postList = document.getElementById("postList");
 
-  if (!postList) console.log("No postlist found.");
-
-  postList.innerHTML = "";
+  try {
+    postList.innerHTML = "";
+  } catch (error){
+    console.log("postList not found.");
+  }
   
   let posts = app.getPosts();
   posts.forEach((post) => {
