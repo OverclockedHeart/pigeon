@@ -47,8 +47,8 @@ export default class PigeonApp {
         this.#app_posts.removePost(id);
     }
 
-    editPost(id, op_type, content){
-        this.#app_posts.editPost(id, op_type, content);
+    editPost(id, title, desc){
+        this.#app_posts.editPost(id, title, desc);
     }
 
     getPosts(){
