@@ -17,26 +17,18 @@ class PostList {
   }
 
   removePost(id) {
-    this.#posts = this.#posts.filter((p) => p.id !== id);
+    this.#posts = this.#posts.filter((post) => post.id !== id);
   }
 
-  editPost(id, op_type, content){
-    let unedited_post = this.#posts.find((p) => p.id !== id);
-    switch(op_type){
-      case 1: //titolo
-        unedited_post.title = content;
-        break;
-      case 2: //desc
-        unedited_post.desc = content;
-        break;
-      default:
-        window.alert("Error: unrecognized operation code.");
-        break;
-    }
+  editPost(id, newTitle, newDesc){
+    let unedited_post = this.#posts.find((post) => id === post.id);
+    if (newTitle != null) unedited_post.title = newTitle;
+    if (newDesc != null) unedited_post.desc = newDesc;
 
-    this.#posts = this.#posts.map((post) => {
+    for (let post of this.#posts){
       if (post.id === unedited_post.id) post = unedited_post;
-    })
+      break; 
+    }
   }
 
   getPosts() {
