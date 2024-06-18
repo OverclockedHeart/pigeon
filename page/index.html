@@ -11,14 +11,6 @@
     <script type="module" src="../controllers/app.js"></script>
     <script type="module" src="../src/main.js"></script>
 
-    <link href="../page/css/style.css" rel="stylesheet" />
-    <link rel="icon" href="./favicon.ico" type=" image/ico" />
-
-    <script type="module" src="../controllers/app.js"></script>
-    <script type="module" src="../src/main.js"></script>
-    <script type="module" src="../src/login.js"></script>
-    <script src="../node_modules/bcryptjs/dist/bcrypt.min.js"></script>
-
     <script>
       function switchPage(dest) {
         window.location.href = "../page/" + dest + ".html";
@@ -27,7 +19,6 @@
   </head>
 
   <body>
-    <!--
     <header>
       <h1>Pigeon v1.0</h1>
       <nav>
@@ -38,26 +29,12 @@
         <button onclick="switchPage('signup')" id="signupButton">Signup</button>
       </nav>
     </header>
-    -->
-    <h1>Pigeon v1.0</h1>
 
-    <main>
-      <form id="loginForm">
-        <label>Username:</label>
-        <input id="usernameInput" type="text" minlength="5" maxlength="20" />
-        <br /><br />
-        <label>Password:</label>
-        <input
-          id="passwordInput"
-          type="password"
-          minlength="8"
-          maxlength="40"
-        />
-        <br /><br />
-        <input type="submit" value="Login" />
-        <h6>No account?</h6>
-        <button onclick="switchPage('signup')" id="signupButton">Signup</button>
-      </form>
+    <main id="home">
+      <h2>Annunci</h2>
+      <div>
+        <ul id="postList"></ul>
+      </div>
     </main>
   </body>
 </html>
