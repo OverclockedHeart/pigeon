@@ -95,6 +95,11 @@ form button {
 
 /**/
 
+#postContent {
+  border-radius: 8px;
+  height: 150px;
+}
+
 #postList {
   text-align: center;
 
