@@ -12,7 +12,10 @@ if (app.getLoggedUser()){
 
     let newelement = document.createElement("button");
     newelement.innerText = "Logout";
-    newelement.onclick = app.logout();
+    newelement.onclick = () => {
+        app.logout()
+        savePigeonAppToLocalStorage(app);
+    };
 
     let header = document.querySelector("header nav");
     header.appendChild(newelement);
