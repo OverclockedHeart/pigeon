@@ -41,11 +41,30 @@ export function renderPosts(app, postList){
           app.removePost(post_id);
           
           savePigeonAppToLocalStorage(app);
-          renderPosts(app);
+          renderPosts(app, postList);
         }
-  
+        
+        let editButton = document.createElement("button");
+        editButton.id = "editPostButton";
+        editButton.innerText = "Modifica post";
+
+        editButton.onclick = function(event){
+            let post_id = event.currentTarget.parentNode.childNodes[3].innerText; //<p id=post_id></p>.innerText
+
+            let titleprompt = prompt("Inserisci il nuovo titolo:");
+            let descprompt = prompt("Inserisci il nuovo contenuto del post:");
+        
+            if (descprompt != null || titleprompt != null){
+                app.editPost(post_id, titleprompt, descprompt);
+                savePigeonAppToLocalStorage(app);
+                renderPosts(app, postList);
+            }
+            else console.log("Edit cancelled.");
+        }
+
+        div.appendChild(editButton);
         div.appendChild(deleteButton);
-      }
+        }
   
       div.className = "post";
       postList.appendChild(div);
