@@ -1,22 +1,24 @@
 import { loadPigeonAppFromLocalStorage, savePigeonAppToLocalStorage } from "../utils/serialize.js";
-import { renderPosts } from "./dashboard.js";
+import { renderPosts } from "../utils/render_posts.js";
 
 const app = loadPigeonAppFromLocalStorage();
-const postList = app.getPosts();
+const postList = document.getElementById("postList");
 
 renderPosts(app, postList);
 
-if (app.getLoggedUser()){
-    document.getElementById("loginButton").remove();
-    document.getElementById("signupButton").remove();
-
+if (app.getLoggedUser() === null) document.getElementById("dashboardButton").remove()
+else {
+    let header = document.querySelector("header nav");
     let newelement = document.createElement("button");
+    
     newelement.innerText = "Logout";
     newelement.onclick = () => {
         app.logout()
         savePigeonAppToLocalStorage(app);
     };
 
-    let header = document.querySelector("header nav");
+    document.getElementById("loginButton").remove();
+    document.getElementById("signupButton").remove();
+    
     header.appendChild(newelement);
-};
+}
